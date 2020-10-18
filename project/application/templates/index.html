@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Smart Contracts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Section -->
+								<section>
+									<header>
+										<p id="details"></p>
+									</header>
+									<div class="features">
+
+										{% for block in blocks %}
+											<article>
+												<span id="{{ block.contract }}" class="icon solid fa-cube" title="{{ block.contract }}#{{ block.contracts_so_far_hashed }}" onclick="func{{ block.contract }}()"></span>
+											</article>
+
+											<script>
+												function func{{ block.contract }}()
+												{
+													var div_element = document.getElementById("{{ block.contract }}")
+													var details_element = document.getElementById("details")
+													details_element.innerHTML = "{{ block.contract }} on {{ block.time }}"
+												}
+											</script>
+										{% endfor %}
+
+									</div>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<nav id="menu">
+								<header class="major">
+									<h1>Smart Contracts</h1>
+									<p>Reliable contracting</p>
+								</header>
+
+								<form action="#" method="POST" style="margin-top:3em">
+									{{ form.contract(placeholder="Contract Number") }}
+									{{ form.save }}
+								</form>
+
+							</nav>
+						</div>
+					</div>
+
+			</div>
+
+	</body>
+</html>
